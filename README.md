@@ -3,7 +3,7 @@
 To assist in development with ionic-native plugins. When being developed concurrently with an app
 that consumes it, ionic-native-dev-util creates a symbolic directory in the `node_modules/@ionic-native`
 folder. And to fully complete this automation, it will modify the app's tsconfig.json and
-angular.json files so that `preserveSymlinks` is set to `true`.
+angular.json files so that `preserveSymlinks` are set to `true`.
 
 ## Install
 

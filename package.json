@@ -6,7 +6,7 @@
   "repository": "https://github.com/marckassay/ionic-native-util",
   "author": "Marc Kassay",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "dependencies": {
     "fs-extra": "^7.0.1"
   },
