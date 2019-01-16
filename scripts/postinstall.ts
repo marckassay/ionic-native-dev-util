@@ -2,7 +2,7 @@ import * as path from "path";
 import { readJson, writeJson, pathExists } from "fs-extra";
 
 async function insertScriptEntries(value: object) {
-    const JSONFilePath: string = path.join(path.resolve(process.cwd()), 'package.json');
+    const JSONFilePath: string = path.resolve('../../package.json');
 
     await pathExists(JSONFilePath)
         .then(async (val) => {

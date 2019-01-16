@@ -44,7 +44,7 @@ function insertScriptEntries(value) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    JSONFilePath = path.join(path.resolve(process.cwd()), 'package.json');
+                    JSONFilePath = path.resolve('../../package.json');
                     return [4 /*yield*/, fs_extra_1.pathExists(JSONFilePath)
                             .then(function (val) { return __awaiter(_this, void 0, void 0, function () {
                             var config_1, err_1, result, err_2;

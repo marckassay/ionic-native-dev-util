@@ -1,7 +1,7 @@
 # ionic-native-dev-util
 
 To assist in development with ionic-native plugins. When being developed concurrently with an app
-that consumes it, ionic-native-dev-util creates a symbolic directory in the `node_modules/@ionic-native`
+that consumes an ionic-native plugin, ionic-native-dev-util creates a symbolic directory in the `node_modules/@ionic-native`
 folder. And to fully complete this automation, it will modify the app's tsconfig.json and
 angular.json files so that `preserveSymlinks` are set to `true`.
 
@@ -25,12 +25,15 @@ link: [yarnpkg.com/en/package/ionic-native-dev-util](https://yarnpkg.com/en/pack
 
 ## Usage
 
-Add the following to package.json file:
+If installed with npm, the script command below should of been added to package.json. If not, add it.
+
+And if installed with yarn, I believe you will need to manually add this command until
+[issue #1671](https://github.com/yarnpkg/yarn/issues/1671) is resolved in its build.
 
 ```json
 {
   "scripts": {
-    "link-plugin": "node ./node_modules/ionic-native-dev-util/dist/index.js"
+    "linkplugin": "node ./node_modules/ionic-native-dev-util"
   }
 }
 ```
@@ -40,10 +43,10 @@ folder. This is the build folder that contains all of its plugins which needs to
 clone. And then, for an example, execute the following:
 
 ```shell
-yarn run link-plugin /home/marc/repos/ionic-native/dist/@ionic-native/plugins/audio-management/
+yarn run linkplugin /home/marc/repos/ionic-native/dist/@ionic-native/plugins/audio-management/
 ```
 
-Where 'audio-management' is the name of the plugin folder. The 'link-plugin' command should of
+Where 'audio-management' is the name of the plugin folder. The 'linkplugin' command should of
 created a symbolic directory in the `node_modules/@ionic-native` folder of the app, if there isn't a folder
 created already with that name. Also if tsconfig.json and/or angular.json are at the root of the
-app, 'link-plugin' command should of enabled the `preserveSymlinks` property.
+app, 'linkplugin' command should of enabled the `preserveSymlinks` property.

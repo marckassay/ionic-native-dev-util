@@ -61,6 +61,8 @@ async function newSymlinkPlugin(src) {
  * @param {*} src path to the plugin in the build directory (dist) of ionic-native
  */
 async function linkplugin(src) {
+    src = src.replace('"', '');
+
     await enablePreserveSymlink('tsconfig.json');
     await enablePreserveSymlink('angular.json');
     await newSymlinkPlugin(src);

@@ -1,6 +1,6 @@
 {
   "name": "ionic-native-dev-util",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Automates in creation of symbolic ionic-native plugin folder for development purposes",
   "main": "dist/lib/index.js",
   "repository": "https://github.com/marckassay/ionic-native-dev-util",
