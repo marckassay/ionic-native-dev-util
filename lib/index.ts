@@ -36,7 +36,7 @@ async function enablePreserveSymlink(filepath: string) {
 async function newSymlinkPlugin(src) {
     const pluginname = path.basename(src);
     const pluginlink = path.join('./node_modules/@ionic-native/', pluginname);
-    const pluginsrc = src;
+    const pluginsrc = path.resolve(src);
 
     await pathExists(pluginlink)
         .then((value) => {

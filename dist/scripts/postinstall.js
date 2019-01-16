@@ -37,49 +37,51 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var path = require("path");
 var fs_extra_1 = require("fs-extra");
-function enablePreserveSymlink(filepath) {
+function insertScriptEntries(value) {
     return __awaiter(this, void 0, void 0, function () {
         var JSONFilePath;
         var _this = this;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    JSONFilePath = path.join(process.cwd(), filepath);
+                    JSONFilePath = path.join(path.resolve(process.cwd()), 'package.json');
                     return [4 /*yield*/, fs_extra_1.pathExists(JSONFilePath)
-                            .then(function (value) { return __awaiter(_this, void 0, void 0, function () {
-                            var config, err_1, result, err_2;
+                            .then(function (val) { return __awaiter(_this, void 0, void 0, function () {
+                            var config_1, err_1, result, err_2;
                             return __generator(this, function (_a) {
                                 switch (_a.label) {
                                     case 0:
-                                        if (!value) return [3 /*break*/, 8];
-                                        config = void 0;
+                                        if (!val) return [3 /*break*/, 8];
                                         _a.label = 1;
                                     case 1:
                                         _a.trys.push([1, 3, , 4]);
                                         return [4 /*yield*/, fs_extra_1.readJson(JSONFilePath)];
                                     case 2:
-                                        config = _a.sent();
-                                        if (filepath.search('.*tsconfig.*') !== -1) {
-                                            config.compilerOptions.preserveSymlinks = true;
+                                        config_1 = _a.sent();
+                                        if (!config_1.scripts) {
+                                            config_1 = Object.assign(config_1, { scripts: value });
                                         }
-                                        else if (filepath.search('.*angular.*') !== -1) {
-                                            config.projects.app.architect.build.options.preserveSymlinks = true;
+                                        else {
+                                            Object.entries(value).forEach(function (v) {
+                                                config_1.scripts[v[0]] = v[1];
+                                            });
                                         }
                                         return [3 /*break*/, 4];
                                     case 3:
                                         err_1 = _a.sent();
-                                        console.error(err_1);
+                                        console.error(config_1);
                                         return [3 /*break*/, 4];
                                     case 4:
                                         _a.trys.push([4, 6, , 7]);
-                                        return [4 /*yield*/, fs_extra_1.writeJson(JSONFilePath, config, { spaces: 4 })];
+                                        return [4 /*yield*/, fs_extra_1.writeJson(JSONFilePath, config_1, { spaces: 2 })];
                                     case 5:
                                         result = _a.sent();
-                                        console.log('Enabled preserveSymlink for', filepath);
+                                        console.log('[ionic-native-dev-util]', 'Added linkplugin command to:', JSONFilePath);
                                         return [2 /*return*/, result];
                                     case 6:
                                         err_2 = _a.sent();
                                         console.error(err_2);
+                                        console.log('[ionic-native-dev-util]', 'Failed to add linkplugin command to:', JSONFilePath);
                                         return [3 /*break*/, 7];
                                     case 7: return [3 /*break*/, 9];
                                     case 8: return [2 /*return*/];
@@ -94,60 +96,6 @@ function enablePreserveSymlink(filepath) {
         });
     });
 }
-function newSymlinkPlugin(src) {
-    return __awaiter(this, void 0, void 0, function () {
-        var pluginname, pluginlink, pluginsrc;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    pluginname = path.basename(src);
-                    pluginlink = path.join('./node_modules/@ionic-native/', pluginname);
-                    pluginsrc = src;
-                    return [4 /*yield*/, fs_extra_1.pathExists(pluginlink)
-                            .then(function (value) {
-                            if (!value) {
-                                fs_extra_1.symlink(pluginsrc, pluginlink, 'dir', function (err) {
-                                    if (!err) {
-                                        console.log('Symlink for plugin has been created here: ' + pluginlink);
-                                    }
-                                    else {
-                                        console.log(err);
-                                    }
-                                });
-                            }
-                            return;
-                        })];
-                case 1:
-                    _a.sent();
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-/**
- * When developing a plugin in ionic-native, this can be called to create a symlink of the built
- * plugin directory. The symlink will be created in the local app's node_modules/@ionic-native
- * folder. Also the `preserveSymlinks` of 'tsconfig.json' and 'angular.json' will be set to `true`.
- *
- * @param {*} src path to the plugin in the build directory (dist) of ionic-native
- */
-function linkplugin(src) {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, enablePreserveSymlink('tsconfig.json')];
-                case 1:
-                    _a.sent();
-                    return [4 /*yield*/, enablePreserveSymlink('angular.json')];
-                case 2:
-                    _a.sent();
-                    return [4 /*yield*/, newSymlinkPlugin(src)];
-                case 3:
-                    _a.sent();
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-linkplugin(process.argv[2]);
-//# sourceMappingURL=index.js.map
+var value = { linkplugin: "node ./node_modules/ionic-native-dev-util" };
+insertScriptEntries(value);
+//# sourceMappingURL=postinstall.js.map

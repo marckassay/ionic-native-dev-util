@@ -1,7 +1,7 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "outDir": "./dist/",
+    "outDir": "./dist",
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "declaration": false,
@@ -15,9 +15,6 @@
       "dom"
     ]
   },
-  "include": [
-    "./lib/**/*"
-  ],
   "exclude": [
     "./node_modules/**/*"
   ]
