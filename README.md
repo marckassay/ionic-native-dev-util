@@ -25,10 +25,7 @@ link: [yarnpkg.com/en/package/ionic-native-dev-util](https://yarnpkg.com/en/pack
 
 ## Usage
 
-If installed with npm, the script command below should of been added to package.json. If not, add it.
-
-And if installed with yarn, I believe you will need to manually add this command until
-[issue #1671](https://github.com/yarnpkg/yarn/issues/1671) is resolved in its build.
+The command below should of been added to host's package.json on 'postinstall' event. If not, add it.
 
 ```json
 {

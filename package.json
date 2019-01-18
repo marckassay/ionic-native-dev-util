@@ -1,13 +1,15 @@
 {
   "name": "ionic-native-dev-util",
-  "version": "0.6.1",
-  "description": "Automates in creation of symbolic ionic-native plugin folder for development purposes",
+  "version": "0.7.0",
+  "description": "Automate in creation of symbolic ionic-native plugin folder for development purposes",
   "main": "dist/lib/index.js",
   "repository": "https://github.com/marckassay/ionic-native-dev-util",
   "author": "Marc Kassay",
   "license": "MIT",
   "private": false,
   "scripts": {
+    "prepublishOnly": "npm run build",
+    "build": "node_modules/.bin/tsc -p tsconfig.json",
     "postinstall": "node dist/scripts/postinstall.js"
   },
   "dependencies": {
@@ -16,6 +18,19 @@
   "devDependencies": {
     "@types/fs-extra": "^5.0.4",
     "@types/node": "^10.12.18",
+    "tslint": "^5.12.1",
+    "tslint-clean-code": "^0.2.9",
     "typescript": "^3.2.2"
-  }
+  },
+  "keywords": [
+    "ionic-native",
+    "util",
+    "script",
+    "command",
+    "cli",
+    "symbolic",
+    "symlink",
+    "development",
+    "plugin"
+  ]
 }
